@@ -29,7 +29,7 @@ import InfoProductVue from "./InfoProduct.vue";
   max-width: 69.25rem;
   width: 100%;
 }
-@media (min-width: 810px) {
+@media (min-width: 1024px) {
   .mobile_main {
     display: none;
   }
@@ -38,12 +38,13 @@ import InfoProductVue from "./InfoProduct.vue";
   }
   .main-content {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 40% 40%;
     justify-content: center;
+    gap: 8%;
     align-items: center;
   }
   .main {
-    padding: 7rem 0;
+    padding: 4rem 0;
   }
 }
 </style>

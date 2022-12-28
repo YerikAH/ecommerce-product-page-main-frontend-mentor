@@ -108,7 +108,7 @@
   justify-content: center;
   align-items: center;
 }
-@media (min-width: 810px) {
+@media (min-width: 1024px) {
   .nav-content {
     display: flex;
   }

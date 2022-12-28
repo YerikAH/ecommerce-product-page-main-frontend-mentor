@@ -32,14 +32,15 @@
   line-height: 1.7rem;
   color: var(--dark-grayish-blue);
 }
-@media (min-width: 810px) {
+@media (min-width: 1024px) {
   .content_product span {
-    font-size: 1rem;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
   }
   .content_product h3 {
     font-size: 2.7rem;
     margin-bottom: 1.5rem;
+    letter-spacing: 0.8px;
   }
 }
 </style>

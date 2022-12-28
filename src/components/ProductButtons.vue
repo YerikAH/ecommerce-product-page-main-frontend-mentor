@@ -2,9 +2,13 @@
 <template>
   <div class="product_buttons">
     <div class="button_interact">
-      <button class="button_decrement">-</button>
+      <button class="button_decrement">
+        <img src="/src/assets/icon-minus.svg" alt="plus" />
+      </button>
       <p class="">0</p>
-      <button class="button_increment">+</button>
+      <button class="button_increment">
+        <img src="/src/assets/icon-plus.svg" alt="plus" />
+      </button>
     </div>
     <div class="button_add_cart">
       <button>
@@ -28,17 +32,15 @@
 }
 .button_interact button {
   color: var(--orange);
-  font-weight: 700;
   border: none;
   outline: none;
   cursor: pointer;
-  text-align: center;
-  font-size: 2rem;
   background-color: transparent;
   width: 5rem;
   display: flex;
-  justify-content: space-around;
   margin: 0.5rem 0;
+  justify-content: center;
+  align-items: center;
 }
 .button_interact p {
   color: var(--very-dark-blue);
@@ -63,9 +65,15 @@
   gap: 1rem;
   margin-top: 1rem;
 }
-@media (min-width: 810px) {
+@media (min-width: 1024px) {
   .product_buttons {
     flex-direction: row;
+    gap: 1rem;
+  }
+  .button_add_cart button {
+    margin: 0;
+    width: 100%;
+    padding: 1rem 2rem;
   }
 }
 </style>

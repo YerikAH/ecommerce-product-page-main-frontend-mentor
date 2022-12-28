@@ -29,7 +29,7 @@
   display: block;
   padding: 0.2rem 0.4rem;
   color: var(--orange);
-  background-color: rgba(255, 125, 26, 0.2);
+  background-color: rgba(255, 125, 26, 0.15);
   border-radius: 0.3rem;
   font-weight: 700;
   font-size: 1rem;
@@ -39,5 +39,15 @@
   font-size: 1rem;
   display: block;
   color: var(--grayish-blue);
+}
+@media (min-width: 1024px) {
+  .product_price {
+    flex-direction: column;
+    margin-top: 1rem;
+    align-items: start;
+  }
+  .product_price del {
+    margin-top: 1rem;
+  }
 }
 </style>
