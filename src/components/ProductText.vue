@@ -32,4 +32,14 @@
   line-height: 1.7rem;
   color: var(--dark-grayish-blue);
 }
+@media (min-width: 810px) {
+  .content_product span {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .content_product h3 {
+    font-size: 2.7rem;
+    margin-bottom: 1.5rem;
+  }
+}
 </style>

@@ -63,4 +63,9 @@
   gap: 1rem;
   margin-top: 1rem;
 }
+@media (min-width: 810px) {
+  .product_buttons {
+    flex-direction: row;
+  }
+}
 </style>
