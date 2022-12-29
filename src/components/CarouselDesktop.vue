@@ -1,22 +1,86 @@
-<script setup></script>
+<script setup>
+import { ref, watch } from "vue";
+import ModalDesktop from "./ModalDesktop.vue";
+
+const primaryImage = ref("/src/assets/image_product_1.jpg");
+const imageSelect = ref("1");
+const showModal = ref(false);
+
+const firstButtonStyles = ref({});
+const secondButtonStyles = ref({});
+const thirdButtonStyles = ref({});
+const fourtButtonStyles = ref({});
+
+function changeImage(e) {
+  console.log(e.target.tagName);
+  if (e.target.tagName === "IMG" || e.target.tagName === "DIV") {
+    let fatherImage = e.target.parentElement;
+    imageSelect.value = fatherImage.value;
+  } else {
+    imageSelect.value = e.target.value;
+  }
+}
+
+watch(imageSelect, (now, back) => {
+  const selectStyle = {
+    background: "hsla(25.2, 100%, 93.9%, 0.70)",
+    border: "3px solid var(--orange)",
+  };
+  if (imageSelect.value === "1") {
+    primaryImage.value = "/src/assets/image_product_1.jpg";
+    voidStyles();
+    firstButtonStyles.value = selectStyle;
+  } else if (imageSelect.value === "2") {
+    primaryImage.value = "/src/assets/image-product-2.jpg";
+    voidStyles();
+    secondButtonStyles.value = selectStyle;
+  } else if (imageSelect.value === "3") {
+    primaryImage.value = "/src/assets/image-product-3.jpg";
+    voidStyles();
+    thirdButtonStyles.value = selectStyle;
+  } else if (imageSelect.value === "4") {
+    primaryImage.value = "/src/assets/image-product-4.jpg";
+    voidStyles();
+    fourtButtonStyles.value = selectStyle;
+  }
+  console.log("Un mensaje cualquiera");
+});
+function switchModal() {
+  showModal.value = !showModal.value;
+}
+function voidStyles() {
+  firstButtonStyles.value = {};
+  secondButtonStyles.value = {};
+  thirdButtonStyles.value = {};
+  fourtButtonStyles.value = {};
+}
+</script>
 <template>
+  <Teleport to="body">
+    <ModalDesktop v-show="showModal" />
+  </Teleport>
   <div class="carousel_desktop">
     <div class="carousel_desktop_image">
-      <img src="/src/assets/image_product_1.jpg" alt="image" />
+      <img v-bind:src="primaryImage" alt="image" @click="switchModal" />
     </div>
     <div class="carousel_desktop_switch">
-      <div class="c_d_switch_one">
+      <button value="1" class="c_d_switch_one" @click="changeImage">
         <img src="/src/assets/image-product-1-thumbnail.jpg" alt="image" />
-      </div>
-      <div class="c_d_switch_one">
-        <img src="/src/assets/image-product-1-thumbnail.jpg" alt="image" />
-      </div>
-      <div class="c_d_switch_one">
+        <div class="select-image" :style="firstButtonStyles"></div>
+      </button>
+      <button value="2" class="c_d_switch_one" @click="changeImage">
         <img src="/src/assets/image-product-2-thumbnail.jpg" alt="image" />
-      </div>
-      <div class="c_d_switch_one">
+        <div class="select-image" :style="secondButtonStyles"></div>
+      </button>
+      <button value="3" class="c_d_switch_one" @click="changeImage">
         <img src="/src/assets/image-product-3-thumbnail.jpg" alt="image" />
-      </div>
+
+        <div class="select-image" :style="thirdButtonStyles"></div>
+      </button>
+      <button value="4" class="c_d_switch_one" @click="changeImage">
+        <img src="/src/assets/image-product-4-thumbnail.jpg" alt="image" />
+        <div class="select-image" :style="fourtButtonStyles"></div>
+      </button>
     </div>
   </div>
 </template>
@@ -26,15 +90,30 @@
   margin-top: 1rem;
   gap: 1.25rem;
 }
-.c_d_switch_one {
+.select-image {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
   border-radius: 1rem;
+}
+.c_d_switch_one {
   width: 6rem;
   height: 6rem;
   overflow: hidden;
+  background: transparent;
+  border: none;
+  position: relative;
 }
 .c_d_switch_one img {
   width: 100%;
   height: auto;
+  border-radius: 1rem;
+}
+.c_d_switch_one:hover div {
+  transition: 0;
+  border: none;
+  background: hsla(25.2, 100%, 93.9%, 0.7);
 }
 
 .carousel_desktop_image {
