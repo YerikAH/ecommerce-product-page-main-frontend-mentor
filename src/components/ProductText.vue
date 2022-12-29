@@ -42,5 +42,8 @@
     margin-bottom: 1.5rem;
     letter-spacing: 0.8px;
   }
+  .content_product {
+    padding: 1rem 0;
+  }
 }
 </style>

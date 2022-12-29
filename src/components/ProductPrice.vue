@@ -45,6 +45,7 @@
     flex-direction: column;
     margin-top: 1rem;
     align-items: start;
+    padding: 0 0 1.5rem 0;
   }
   .product_price del {
     margin-top: 1rem;
