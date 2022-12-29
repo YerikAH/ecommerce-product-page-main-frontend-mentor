@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { provide, ref, watch } from "vue";
 import ModalDesktop from "./ModalDesktop.vue";
 
 const primaryImage = ref("/src/assets/image_product_1.jpg");
@@ -20,7 +20,6 @@ function changeImage(e) {
     imageSelect.value = e.target.value;
   }
 }
-
 watch(imageSelect, (now, back) => {
   const selectStyle = {
     background: "hsla(25.2, 100%, 93.9%, 0.70)",
@@ -54,10 +53,11 @@ function voidStyles() {
   thirdButtonStyles.value = {};
   fourtButtonStyles.value = {};
 }
+provide("indexImage", imageSelect.value);
 </script>
 <template>
   <Teleport to="body">
-    <ModalDesktop v-show="showModal" />
+    <ModalDesktop v-show="showModal" :imageSelectTwo="imageSelect" />
   </Teleport>
   <div class="carousel_desktop">
     <div class="carousel_desktop_image">
