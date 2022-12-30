@@ -11,8 +11,12 @@ const secondButtonStyles = ref({});
 const thirdButtonStyles = ref({});
 const fourtButtonStyles = ref({});
 
+const selectStyle = {
+  background: "hsla(25.2, 100%, 93.9%, 0.70)",
+  border: "3px solid var(--orange)",
+};
+
 function changeImage(e) {
-  console.log(e.target.tagName);
   if (e.target.tagName === "IMG" || e.target.tagName === "DIV") {
     let fatherImage = e.target.parentElement;
     imageSelect.value = fatherImage.value;
@@ -21,10 +25,6 @@ function changeImage(e) {
   }
 }
 watch(imageSelect, (now, back) => {
-  const selectStyle = {
-    background: "hsla(25.2, 100%, 93.9%, 0.70)",
-    border: "3px solid var(--orange)",
-  };
   if (imageSelect.value === "1") {
     primaryImage.value = "/src/assets/image_product_1.jpg";
     voidStyles();
@@ -42,7 +42,6 @@ watch(imageSelect, (now, back) => {
     voidStyles();
     fourtButtonStyles.value = selectStyle;
   }
-  console.log("Un mensaje cualquiera");
 });
 function switchModal() {
   showModal.value = !showModal.value;
@@ -53,11 +52,17 @@ function voidStyles() {
   thirdButtonStyles.value = {};
   fourtButtonStyles.value = {};
 }
-provide("indexImage", imageSelect.value);
+// Initial state
+firstButtonStyles.value = selectStyle;
 </script>
 <template>
   <Teleport to="body">
-    <ModalDesktop v-show="showModal" :imageSelectTwo="imageSelect" />
+    <ModalDesktop
+      v-show="showModal"
+      :imageSelect="imageSelect"
+      :showModal="showModal"
+      @event-switch="switchModal"
+    />
   </Teleport>
   <div class="carousel_desktop">
     <div class="carousel_desktop_image">
