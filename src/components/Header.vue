@@ -1,10 +1,21 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import MenuMobile from "./MenuMobile.vue";
+const menuMobileSwitch = ref(false);
+
+function switchMenuMobile() {
+  menuMobileSwitch.value = !menuMobileSwitch.value;
+}
+</script>
 <template>
   <div role="header" class="header">
+    <Teleport to="body">
+      <MenuMobile v-show="menuMobileSwitch" @event-switch="switchMenuMobile" />
+    </Teleport>
     <div class="header-nav" role="navigation">
       <div class="nav-separator">
         <div class="nav-ham">
-          <button aria-label="open menu">
+          <button aria-label="open menu" @click="switchMenuMobile">
             <img src="../assets/icon-menu.svg" alt="menu" />
           </button>
         </div>
