@@ -12,6 +12,23 @@ const selectStyle = {
   background: "hsla(25.2, 100%, 93.9%, 0.70)",
   border: "3px solid var(--orange)",
 };
+function nextImage() {
+  if (parseInt(imageSelectTwoModal.value) >= 4) {
+    imageSelectTwoModal.value = "1";
+  } else {
+    imageSelectTwoModal.value = `${parseInt(imageSelectTwoModal.value) + 1}`;
+  }
+  console.log(imageSelectTwoModal.value);
+}
+function previousImage() {
+  console.log("Previous click");
+  if (parseInt(imageSelectTwoModal.value) <= 1) {
+    imageSelectTwoModal.value = "4";
+  } else {
+    imageSelectTwoModal.value = `${parseInt(imageSelectTwoModal.value) - 1}`;
+  }
+}
+
 function changeImage(e) {
   if (e.target.tagName === "IMG" || e.target.tagName === "DIV") {
     let fatherImage = e.target.parentElement;
@@ -67,7 +84,21 @@ firstButtonStyles.value = selectStyle;
         </button>
       </div>
       <div class="carousel_desktop_image">
-        <img v-bind:src="primaryImage" alt="image" />
+        <img v-bind:src="primaryImage" alt="image" class="primary-image" />
+        <button
+          aria-label="next"
+          class="carousel-button-next flex"
+          @click="nextImage"
+        >
+          <img src="../assets/icon-next.svg" alt="next" />
+        </button>
+        <button
+          aria-label="previous"
+          class="carousel-button-previous flex"
+          @click="previousImage"
+        >
+          <img src="../assets/icon-previous.svg" alt="previous" />
+        </button>
       </div>
       <div class="carousel_desktop_switch">
         <button value="1" class="c_d_switch_one" @click="changeImage">
@@ -92,6 +123,39 @@ firstButtonStyles.value = selectStyle;
   </div>
 </template>
 <style scoped>
+.carousel_desktop_image button {
+  position: absolute;
+  margin: auto -1.5rem;
+  background-color: var(--white);
+}
+.flex {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 15rem;
+}
+.flex img {
+  width: 12px;
+  object-fit: contain;
+}
+.carousel-button-next {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 1rem;
+  background-color: var(--white);
+}
+.carousel-button-previous {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 1rem;
+}
+
 .close-modal {
   background-color: transparent;
   outline: none;
@@ -125,9 +189,6 @@ firstButtonStyles.value = selectStyle;
   padding: 2rem 1rem;
   overflow-y: auto;
 }
-html {
-  overflow: hidden;
-}
 .carousel_desktop_switch {
   display: flex;
   margin-top: 3rem;
@@ -160,16 +221,16 @@ html {
 }
 
 .carousel_desktop_image {
-  overflow: hidden;
   max-width: 33.125rem;
   max-height: 33.125rem;
   height: 100%;
   width: 100%;
-  border-radius: 2rem;
+  position: relative;
 }
-.carousel_desktop_image img {
+.primary-image {
   width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 2rem;
 }
 </style>
