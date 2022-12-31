@@ -39,18 +39,40 @@ watch(imageGuide, (now, back) => {
       class="carousel-button-next flex"
       @click="nextImage"
     >
-      <img src="../assets/icon-next.svg" alt="next" />
+      <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m2 1 8 8-8 8"
+          stroke="#1D2026"
+          stroke-width="3"
+          fill="none"
+          fill-rule="evenodd"
+        />
+      </svg>
     </button>
     <button
       aria-label="previous"
       class="carousel-button-previous flex"
       @click="previousImage"
     >
-      <img src="../assets/icon-previous.svg" alt="previous" />
+      <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M11 1 3 9l8 8"
+          stroke="#1D2026"
+          stroke-width="3"
+          fill="none"
+          fill-rule="evenodd"
+        />
+      </svg>
     </button>
   </div>
 </template>
 <style scoped>
+.carousel-image path {
+  transition: 0.3s;
+}
+.carousel-image button:hover path {
+  stroke: var(--orange);
+}
 .carousel-image {
   position: relative;
   width: 100vw;
@@ -68,6 +90,7 @@ watch(imageGuide, (now, back) => {
   width: 2rem;
   height: 2rem;
   border-radius: 15rem;
+  background-color: var(--white);
 }
 .flex img {
   width: 12px;
@@ -79,7 +102,6 @@ watch(imageGuide, (now, back) => {
   top: 0;
   bottom: 0;
   margin: auto 1rem;
-  background-color: var(--white);
 }
 .carousel-button-previous {
   position: absolute;

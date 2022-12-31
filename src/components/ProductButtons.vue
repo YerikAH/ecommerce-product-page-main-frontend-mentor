@@ -19,7 +19,8 @@
         </svg>
       </button>
 
-      <p class="">0</p>
+      <p class="">1</p>
+
       <button class="button_increment">
         <svg
           width="12"

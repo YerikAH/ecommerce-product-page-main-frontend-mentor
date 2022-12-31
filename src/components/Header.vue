@@ -90,6 +90,9 @@
   bottom: -2.75rem;
   transition: 0.3s;
 }
+.nav-content a:hover {
+  color: var(--very-dark-blue);
+}
 .nav-content a:hover::after {
   height: 5px;
 }

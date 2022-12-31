@@ -80,7 +80,18 @@ firstButtonStyles.value = selectStyle;
           @click="$emit('eventSwitch')"
           aria-label="close modal"
         >
-          <img src="/src/assets/icon-close.svg" alt="close modal" />
+          <svg
+            width="20"
+            height="21"
+            xmlns="http://www.w3.org/2000/svg"
+            class="close-modal-svg"
+          >
+            <path
+              d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+              fill="#FFFFFF"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
       </div>
       <div class="carousel_desktop_image">
@@ -90,14 +101,30 @@ firstButtonStyles.value = selectStyle;
           class="carousel-button-next flex"
           @click="nextImage"
         >
-          <img src="../assets/icon-next.svg" alt="next" />
+          <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m2 1 8 8-8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
         <button
           aria-label="previous"
           class="carousel-button-previous flex"
           @click="previousImage"
         >
-          <img src="../assets/icon-previous.svg" alt="previous" />
+          <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11 1 3 9l8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
       </div>
       <div class="carousel_desktop_switch">
@@ -123,6 +150,21 @@ firstButtonStyles.value = selectStyle;
   </div>
 </template>
 <style scoped>
+.close-modal-svg {
+  scale: 1.5;
+}
+.close-modal path {
+  transition: 0.3s;
+}
+.close-modal:hover path {
+  fill: var(--orange);
+}
+.carousel_desktop_image path {
+  transition: 0.3s;
+}
+.carousel_desktop_image button:hover path {
+  stroke: var(--orange);
+}
 .carousel_desktop_image button {
   position: absolute;
   margin: auto -1.5rem;
