@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import MenuMobile from "./MenuMobile.vue";
+import ModalProductAdd from "./ModalProductAdd.vue";
 const menuMobileSwitch = ref(false);
 
 function switchMenuMobile() {
@@ -46,6 +47,7 @@ function switchMenuMobile() {
             />
           </svg>
           <span class="icons-button-count"> 2 </span>
+          <ModalProductAdd />
         </div>
         <div class="nav-avatar-hover">
           <img src="../assets/image-avatar.png" alt="avatar" />
