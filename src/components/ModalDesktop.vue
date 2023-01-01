@@ -230,6 +230,7 @@ firstButtonStyles.value = selectStyle;
   place-items: center;
   padding: 2rem 1rem;
   overflow-y: auto;
+  z-index: 500;
 }
 .carousel_desktop_switch {
   display: flex;
