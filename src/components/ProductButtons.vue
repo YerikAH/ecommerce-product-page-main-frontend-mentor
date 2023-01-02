@@ -1,8 +1,46 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const countProduct = ref(1);
+const emit = defineEmits(["eventButtons"]);
+function addToCart(e) {
+  // If we consume a product API and create attributes with relevant content on the Add Cart button
+  const nameProduct = e.target.getAttribute("name-product");
+  const priceProduct = e.target.getAttribute("price-product");
+  const imageProduct = e.target.getAttribute("image-product");
+  const idProduct = e.target.getAttribute("id-product");
+  const descountProduct = e.target.getAttribute("descount-product");
+
+  const priceReal = caclDescount(
+    parseFloat(priceProduct),
+    parseFloat(descountProduct)
+  );
+
+  const n = [
+    idProduct,
+    nameProduct,
+    priceReal,
+    imageProduct,
+    countProduct.value.toString(),
+  ];
+  emit("eventButtons", n);
+}
+function editCount(increment) {
+  const newValue = increDecre(countProduct.value, increment);
+  countProduct.value =
+    newValue > 20 || newValue <= 0 ? countProduct.value : newValue;
+}
+function increDecre(num, incrementOr) {
+  return incrementOr ? num + 1 : num - 1;
+}
+function caclDescount(price, descount) {
+  return price - ((price * descount) / 100).toString();
+}
+</script>
 <template>
   <div class="product_buttons">
     <div class="button_interact">
-      <button class="button_decrement">
+      <button class="button_decrement" @click="() => editCount(false)">
         <svg
           width="12"
           height="4"
@@ -19,9 +57,9 @@
         </svg>
       </button>
 
-      <p class="">1</p>
+      <p class="">{{ countProduct }}</p>
 
-      <button class="button_increment">
+      <button class="button_increment" @click="() => editCount(true)">
         <svg
           width="12"
           height="12"
@@ -39,7 +77,14 @@
       </button>
     </div>
     <div class="button_add_cart">
-      <button>
+      <button
+        @click="addToCart"
+        name-product="Full Limited Edition Sneakers"
+        price-product="250"
+        image-product="src/assets/image-product-1-thumbnail.jpg"
+        id-product="pc-045"
+        descount-product="50"
+      >
         <img src="/src/assets/icon-cart-white.svg" alt="cart" />
         Add to cart
       </button>

@@ -2,6 +2,10 @@
 import CarouselDesktop from "./CarouselDesktop.vue";
 import CarouselMobile from "./CarouselMobile.vue";
 import InfoProductVue from "./InfoProduct.vue";
+const emit = defineEmits(["eventMain"]);
+function happendProduct(n) {
+  emit("eventMain", n);
+}
 </script>
 <template>
   <div class="main">
@@ -12,7 +16,7 @@ import InfoProductVue from "./InfoProduct.vue";
       <div class="desktop_main">
         <CarouselDesktop />
       </div>
-      <InfoProductVue />
+      <InfoProductVue @event-product="(n) => happendProduct(n)" />
     </div>
   </div>
 </template>
