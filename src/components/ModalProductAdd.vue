@@ -1,34 +1,32 @@
 <script setup>
 import { ref } from "vue";
 
-const productCart = ref([
-  {
-    id: "pc-15",
-    name: "Full Limited Edition Sneakers",
-    price: 125,
-    img: "/src/assets/image-product-1-thumbnail.jpg",
-  },
-]);
+const productsProps = defineProps(["valueProps"]);
+
+console.log(productsProps.valueProps.length);
 </script>
 <template>
   <div class="modal-product-add">
     <div class="cart-products">
       <h4>Cart</h4>
       <div class="items-product">
-        <p v-if="productCart === 0" class="items-product_empty">
+        <p
+          v-if="productsProps.valueProps.length === 0"
+          class="items-product_empty"
+        >
           Your cart is empty
         </p>
         <div
-          v-if="productCart !== 0"
+          v-if="productsProps.valueProps.length !== 0"
           class="product"
-          v-for="(item, i) in productCart"
+          v-for="(item, i) in productsProps.valueProps"
           :key="i"
         >
           <div class="">
             <img :src="item.img" alt="image" />
             <div class="product-details">
               <h5>{{ item.name }}</h5>
-              <p>${{ item.price }} x 3 <b>$375.00</b></p>
+              <p>${{ item.price }} x {{ item.count }} <b>$375.00</b></p>
             </div>
           </div>
           <button>
@@ -49,7 +47,10 @@ const productCart = ref([
           </button>
         </div>
         <div class="products-checkout-container">
-          <button v-if="productCart !== 0" class="products-checkout">
+          <button
+            v-if="productsProps.valueProps.length !== 0"
+            class="products-checkout"
+          >
             Checkout
           </button>
         </div>
@@ -148,6 +149,7 @@ const productCart = ref([
   font-weight: 700;
   font-size: 1rem;
   color: var(--dark-grayish-blue);
+  padding: 5rem 0;
 }
 @media (min-width: 500px) {
   .modal-product-add {

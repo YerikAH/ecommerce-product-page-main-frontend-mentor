@@ -4,6 +4,7 @@ import MenuMobile from "./MenuMobile.vue";
 import ModalProductAdd from "./ModalProductAdd.vue";
 const menuMobileSwitch = ref(false);
 const modalProduct = ref(false);
+const valueProps = defineProps(["productCart"]);
 function switchMenuMobile() {
   menuMobileSwitch.value = !menuMobileSwitch.value;
 }
@@ -50,7 +51,10 @@ function switchProduct() {
             />
           </svg>
           <span class="icons-button-count"> 2 </span>
-          <ModalProductAdd v-show="modalProduct" />
+          <ModalProductAdd
+            v-show="modalProduct"
+            :valueProps="valueProps.productCart"
+          />
         </div>
         <div class="nav-avatar-hover">
           <img src="../assets/image-avatar.png" alt="avatar" />

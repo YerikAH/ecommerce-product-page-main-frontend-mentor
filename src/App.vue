@@ -3,15 +3,7 @@ import { ref } from "vue";
 import Header from "./components/Header.vue";
 import MainComponent from "./components/MainComponent.vue";
 
-const productCart = ref([
-  {
-    id: "pc-15",
-    name: "Full Limited Edition Sneakers",
-    price: 125,
-    img: "/src/assets/image-product-1-thumbnail.jpg",
-    count: "5",
-  },
-]);
+const productCart = ref([]);
 function newProduct(n) {
   const [id, name, price, img, count] = n;
   const newProductObj = {
@@ -27,7 +19,7 @@ function newProduct(n) {
 </script>
 
 <template>
-  <Header />
+  <Header :productCart="productCart" />
   <MainComponent @event-main="(n) => newProduct(n)" />
   <div class="test" v-for="(item, i) in productCart" :key="i">
     {{ item.name }}
