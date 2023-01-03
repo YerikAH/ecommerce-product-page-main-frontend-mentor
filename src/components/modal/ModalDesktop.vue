@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
+import { STYLE_SELECT } from "../../helpers/variables";
 
 const primaryImage = ref("/src/assets/image_product_1.jpg");
 const props = defineProps(["imageSelect", "showModal"]);
@@ -8,20 +9,15 @@ const firstButtonStyles = ref({});
 const secondButtonStyles = ref({});
 const thirdButtonStyles = ref({});
 const fourtButtonStyles = ref({});
-const selectStyle = {
-  background: "hsla(25.2, 100%, 93.9%, 0.70)",
-  border: "3px solid var(--orange)",
-};
+
 function nextImage() {
   if (parseInt(imageSelectTwoModal.value) >= 4) {
     imageSelectTwoModal.value = "1";
   } else {
     imageSelectTwoModal.value = `${parseInt(imageSelectTwoModal.value) + 1}`;
   }
-  console.log(imageSelectTwoModal.value);
 }
 function previousImage() {
-  console.log("Previous click");
   if (parseInt(imageSelectTwoModal.value) <= 1) {
     imageSelectTwoModal.value = "4";
   } else {
@@ -44,24 +40,23 @@ setInterval(() => {
 }, 500);
 watch(imageSelectTwoModal, (now, back) => {
   if (imageSelectTwoModal.value === "1") {
-    primaryImage.value = "/src/assets/image_product_1.jpg";
-    voidStyles();
-    firstButtonStyles.value = selectStyle;
+    selectNewImage("/src/assets/image_product_1.jpg");
+    firstButtonStyles.value = STYLE_SELECT;
   } else if (imageSelectTwoModal.value === "2") {
-    primaryImage.value = "/src/assets/image-product-2.jpg";
-    voidStyles();
-    secondButtonStyles.value = selectStyle;
+    selectNewImage("/src/assets/image-product-2.jpg");
+    secondButtonStyles.value = STYLE_SELECT;
   } else if (imageSelectTwoModal.value === "3") {
-    primaryImage.value = "/src/assets/image-product-3.jpg";
-    voidStyles();
-    thirdButtonStyles.value = selectStyle;
+    selectNewImage("/src/assets/image-product-3.jpg");
+    thirdButtonStyles.value = STYLE_SELECT;
   } else if (imageSelectTwoModal.value === "4") {
-    primaryImage.value = "/src/assets/image-product-4.jpg";
-    voidStyles();
-    fourtButtonStyles.value = selectStyle;
+    selectNewImage("/src/assets/image-product-4.jpg");
+    fourtButtonStyles.value = STYLE_SELECT;
   }
 });
-
+function selectNewImage(pathImage) {
+  primaryImage.value = pathImage;
+  voidStyles();
+}
 function voidStyles() {
   firstButtonStyles.value = {};
   secondButtonStyles.value = {};
@@ -69,7 +64,7 @@ function voidStyles() {
   fourtButtonStyles.value = {};
 }
 // initial state
-firstButtonStyles.value = selectStyle;
+firstButtonStyles.value = STYLE_SELECT;
 </script>
 <template>
   <div class="modal_app">

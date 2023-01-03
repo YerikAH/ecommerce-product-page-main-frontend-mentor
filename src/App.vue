@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import Header from "./components/Header.vue";
-import MainComponent from "./components/MainComponent.vue";
+import Header from "./components/header/Header.vue";
+import MainComponent from "./components/main/MainComponent.vue";
 
 const productCart = ref([]);
 function newProduct(n) {

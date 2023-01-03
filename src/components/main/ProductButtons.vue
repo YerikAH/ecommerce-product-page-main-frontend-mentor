@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { caclDescount, increDecre } from "../../helpers/operators";
 
 const countProduct = ref(1);
 const emit = defineEmits(["eventButtons"]);
@@ -37,12 +38,6 @@ function editCount(increment) {
   const newValue = increDecre(countProduct.value, increment);
   countProduct.value =
     newValue > 20 || newValue <= 0 ? countProduct.value : newValue;
-}
-function increDecre(num, incrementOr) {
-  return incrementOr ? num + 1 : num - 1;
-}
-function caclDescount(price, descount) {
-  return price - ((price * descount) / 100).toString();
 }
 </script>
 <template>

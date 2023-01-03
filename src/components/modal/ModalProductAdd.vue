@@ -1,11 +1,8 @@
 <script setup>
+import { calcPriceTotal } from "../../helpers/operators";
+
 const productsProps = defineProps(["valueProps"]);
 const emit = defineEmits(["evemodalHeader"]);
-
-function calcPriceTotal(price, count) {
-  const result = parseFloat(price) * parseInt(count);
-  return result.toFixed(2);
-}
 
 function deleteProduct(e) {
   let eventClick;

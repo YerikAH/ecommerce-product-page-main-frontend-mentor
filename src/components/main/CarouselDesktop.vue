@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
-import ModalDesktop from "./ModalDesktop.vue";
+import { STYLE_SELECT } from "../../helpers/variables";
+import ModalDesktop from "../modal/ModalDesktop.vue";
 
 const primaryImage = ref("/src/assets/image_product_1.jpg");
 const imageSelect = ref("1");
@@ -10,11 +11,6 @@ const firstButtonStyles = ref({});
 const secondButtonStyles = ref({});
 const thirdButtonStyles = ref({});
 const fourtButtonStyles = ref({});
-
-const selectStyle = {
-  background: "hsla(25.2, 100%, 93.9%, 0.70)",
-  border: "3px solid var(--orange)",
-};
 
 function changeImage(e) {
   if (e.target.tagName === "IMG" || e.target.tagName === "DIV") {
@@ -27,16 +23,16 @@ function changeImage(e) {
 watch(imageSelect, (now, back) => {
   if (imageSelect.value === "1") {
     selectNewImage("/src/assets/image_product_1.jpg");
-    firstButtonStyles.value = selectStyle;
+    firstButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "2") {
     selectNewImage("/src/assets/image-product-2.jpg");
-    secondButtonStyles.value = selectStyle;
+    secondButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "3") {
     selectNewImage("/src/assets/image-product-3.jpg");
-    thirdButtonStyles.value = selectStyle;
+    thirdButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "4") {
     selectNewImage("/src/assets/image-product-4.jpg");
-    fourtButtonStyles.value = selectStyle;
+    fourtButtonStyles.value = STYLE_SELECT;
   }
 });
 function switchModal() {
@@ -53,7 +49,7 @@ function selectNewImage(pathImage) {
   voidStyles();
 }
 // Initial state
-firstButtonStyles.value = selectStyle;
+firstButtonStyles.value = STYLE_SELECT;
 </script>
 <template>
   <Teleport to="body">

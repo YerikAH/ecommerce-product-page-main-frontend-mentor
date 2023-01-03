@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import MenuMobile from "./MenuMobile.vue";
-import ModalProductAdd from "./ModalProductAdd.vue";
+import ModalProductAdd from "../modal/ModalProductAdd.vue";
 const menuMobileSwitch = ref(false);
 const modalProduct = ref(false);
 const valueProps = defineProps(["productCart"]);
@@ -33,13 +33,13 @@ function deleteEmit(id) {
       <div class="nav-separator">
         <div class="nav-ham">
           <button aria-label="open menu" @click="switchMenuMobile">
-            <img src="../assets/icon-menu.svg" alt="menu" />
+            <img src="/src/assets/icon-menu.svg" alt="menu" />
           </button>
         </div>
         <div class="nav-logo">
           <ul>
             <li>
-              <a href="#"><img src="../assets/logo.svg" alt="logo" /></a>
+              <a href="#"><img src="/src/assets/logo.svg" alt="logo" /></a>
             </li>
           </ul>
         </div>
@@ -67,7 +67,13 @@ function deleteEmit(id) {
               fill-rule="nonzero"
             />
           </svg>
-          <span class="icons-button-count"> 2 </span>
+
+          <span
+            v-show="valueProps.productCart.length !== 0"
+            class="icons-button-count"
+          >
+            {{ valueProps.productCart.length }}
+          </span>
           <ModalProductAdd
             v-show="modalProduct"
             :valueProps="valueProps.productCart"
@@ -75,7 +81,7 @@ function deleteEmit(id) {
           />
         </div>
         <div class="nav-avatar-hover">
-          <img src="../assets/image-avatar.png" alt="avatar" />
+          <img src="/src/assets/image-avatar.png" alt="avatar" />
         </div>
       </div>
     </div>
