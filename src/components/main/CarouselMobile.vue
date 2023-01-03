@@ -1,7 +1,12 @@
 <script setup>
 import { ref, watch } from "vue";
 
-const imageString = ref("src/assets/image_product_1.jpg");
+import firstImage from "/src/assets/image_product_1.jpg";
+import secondImage from "/src/assets/image-product-2.jpg";
+import threeImage from "/src/assets/image-product-3.jpg";
+import fourImage from "/src/assets/image-product-4.jpg";
+
+const imageString = ref(firstImage);
 let imageGuide = ref(1);
 
 function nextImage() {
@@ -21,13 +26,13 @@ function previousImage() {
 
 watch(imageGuide, (now, back) => {
   if (imageGuide.value === 1) {
-    imageString.value = "src/assets/image_product_1.jpg";
+    imageString.value = firstImage;
   } else if (imageGuide.value === 2) {
-    imageString.value = "src/assets/image-product-2.jpg";
+    imageString.value = secondImage;
   } else if (imageGuide.value === 3) {
-    imageString.value = "src/assets/image-product-3.jpg";
+    imageString.value = threeImage;
   } else if (imageGuide.value === 4) {
-    imageString.value = "src/assets/image-product-4.jpg";
+    imageString.value = fourImage;
   }
 });
 </script>

@@ -35,7 +35,7 @@ function deleteProduct(e) {
           :key="i"
         >
           <div class="">
-            <img :src="item.img" alt="image" />
+            <img src="/src/assets/image-product-1-thumbnail.jpg" alt="image" />
             <div class="product-details">
               <h5>{{ item.name }}</h5>
               <p>

@@ -4,7 +4,12 @@ import { STYLE_SELECT } from "../../helpers/variables";
 import { switchScroll } from "../../helpers/void";
 import ModalDesktop from "../modal/ModalDesktop.vue";
 
-const primaryImage = ref("/src/assets/image_product_1.jpg");
+import firstImage from "/src/assets/image_product_1.jpg";
+import secondImage from "/src/assets/image-product-2.jpg";
+import threeImage from "/src/assets/image-product-3.jpg";
+import fourImage from "/src/assets/image-product-4.jpg";
+
+const primaryImage = ref(firstImage);
 const imageSelect = ref("1");
 const showModal = ref(false);
 
@@ -23,16 +28,16 @@ function changeImage(e) {
 }
 watch(imageSelect, (now, back) => {
   if (imageSelect.value === "1") {
-    selectNewImage("/src/assets/image_product_1.jpg");
+    selectNewImage(firstImage);
     firstButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "2") {
-    selectNewImage("/src/assets/image-product-2.jpg");
+    selectNewImage(secondImage);
     secondButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "3") {
-    selectNewImage("/src/assets/image-product-3.jpg");
+    selectNewImage(threeImage);
     thirdButtonStyles.value = STYLE_SELECT;
   } else if (imageSelect.value === "4") {
-    selectNewImage("/src/assets/image-product-4.jpg");
+    selectNewImage(fourImage);
     fourtButtonStyles.value = STYLE_SELECT;
   }
 });
