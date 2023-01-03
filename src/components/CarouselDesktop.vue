@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import ModalDesktop from "./ModalDesktop.vue";
 
 const primaryImage = ref("/src/assets/image_product_1.jpg");
@@ -26,20 +26,16 @@ function changeImage(e) {
 }
 watch(imageSelect, (now, back) => {
   if (imageSelect.value === "1") {
-    primaryImage.value = "/src/assets/image_product_1.jpg";
-    voidStyles();
+    selectNewImage("/src/assets/image_product_1.jpg");
     firstButtonStyles.value = selectStyle;
   } else if (imageSelect.value === "2") {
-    primaryImage.value = "/src/assets/image-product-2.jpg";
-    voidStyles();
+    selectNewImage("/src/assets/image-product-2.jpg");
     secondButtonStyles.value = selectStyle;
   } else if (imageSelect.value === "3") {
-    primaryImage.value = "/src/assets/image-product-3.jpg";
-    voidStyles();
+    selectNewImage("/src/assets/image-product-3.jpg");
     thirdButtonStyles.value = selectStyle;
   } else if (imageSelect.value === "4") {
-    primaryImage.value = "/src/assets/image-product-4.jpg";
-    voidStyles();
+    selectNewImage("/src/assets/image-product-4.jpg");
     fourtButtonStyles.value = selectStyle;
   }
 });
@@ -51,6 +47,10 @@ function voidStyles() {
   secondButtonStyles.value = {};
   thirdButtonStyles.value = {};
   fourtButtonStyles.value = {};
+}
+function selectNewImage(pathImage) {
+  primaryImage.value = pathImage;
+  voidStyles();
 }
 // Initial state
 firstButtonStyles.value = selectStyle;

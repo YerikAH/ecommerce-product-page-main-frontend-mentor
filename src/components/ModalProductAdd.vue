@@ -1,9 +1,24 @@
 <script setup>
-import { ref } from "vue";
-
 const productsProps = defineProps(["valueProps"]);
+const emit = defineEmits(["evemodalHeader"]);
 
-console.log(productsProps.valueProps.length);
+function calcPriceTotal(price, count) {
+  const result = parseFloat(price) * parseInt(count);
+  return result.toFixed(2);
+}
+
+function deleteProduct(e) {
+  let eventClick;
+  if (e.target.tagName === "use") {
+    eventClick = e.target.parentElement.parentElement;
+  } else if (e.target.tagName === "svg") {
+    eventClick = e.target.parentElement;
+  } else if (e.target.tagName === "BUTTON") {
+    eventClick = e.target;
+  }
+  const getId = eventClick.getAttribute("product-id");
+  emit("evemodalHeader", getId);
+}
 </script>
 <template>
   <div class="modal-product-add">
@@ -26,10 +41,13 @@ console.log(productsProps.valueProps.length);
             <img :src="item.img" alt="image" />
             <div class="product-details">
               <h5>{{ item.name }}</h5>
-              <p>${{ item.price }} x {{ item.count }} <b>$375.00</b></p>
+              <p>
+                ${{ item.price }} x {{ item.count }}
+                <b>${{ calcPriceTotal(item.price, item.count) }}</b>
+              </p>
             </div>
           </div>
-          <button>
+          <button :product-id="item.id" @click="deleteProduct">
             <svg
               width="14"
               height="16"

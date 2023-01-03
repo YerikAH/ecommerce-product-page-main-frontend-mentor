@@ -3,14 +3,20 @@ import { ref } from "vue";
 
 const countProduct = ref(1);
 const emit = defineEmits(["eventButtons"]);
-function addToCart(e) {
-  // If we consume a product API and create attributes with relevant content on the Add Cart button
-  const nameProduct = e.target.getAttribute("name-product");
-  const priceProduct = e.target.getAttribute("price-product");
-  const imageProduct = e.target.getAttribute("image-product");
-  const idProduct = e.target.getAttribute("id-product");
-  const descountProduct = e.target.getAttribute("descount-product");
 
+function addToCart(e) {
+  let eventClick;
+  if (e.target.tagName === "IMG") {
+    eventClick = e.target.parentElement;
+  } else {
+    eventClick = e.target;
+  }
+  // If we consume a product API and create attributes with relevant content on the Add Cart button
+  const nameProduct = eventClick.getAttribute("name-product");
+  const priceProduct = eventClick.getAttribute("price-product");
+  const imageProduct = eventClick.getAttribute("image-product");
+  const idProduct = eventClick.getAttribute("id-product");
+  const descountProduct = eventClick.getAttribute("descount-product");
   const priceReal = caclDescount(
     parseFloat(priceProduct),
     parseFloat(descountProduct)
@@ -24,6 +30,8 @@ function addToCart(e) {
     countProduct.value.toString(),
   ];
   emit("eventButtons", n);
+
+  countProduct.value = 1;
 }
 function editCount(increment) {
   const newValue = increDecre(countProduct.value, increment);

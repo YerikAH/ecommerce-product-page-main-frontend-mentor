@@ -2,31 +2,31 @@
 import { ref, watch } from "vue";
 
 const imageString = ref("src/assets/image_product_1.jpg");
-let imageGuide = ref(0);
+let imageGuide = ref(1);
 
 function nextImage() {
-  if (imageGuide.value >= 3) {
-    imageGuide.value = 0;
+  if (imageGuide.value >= 4) {
+    imageGuide.value = 1;
   } else {
     imageGuide.value = imageGuide.value + 1;
   }
 }
 function previousImage() {
-  if (imageGuide.value <= 0) {
-    imageGuide.value = 3;
+  if (imageGuide.value <= 1) {
+    imageGuide.value = 4;
   } else {
     imageGuide.value = imageGuide.value - 1;
   }
 }
 
 watch(imageGuide, (now, back) => {
-  if (imageGuide.value === 0) {
+  if (imageGuide.value === 1) {
     imageString.value = "src/assets/image_product_1.jpg";
-  } else if (imageGuide.value === 1) {
-    imageString.value = "src/assets/image-product-2.jpg";
   } else if (imageGuide.value === 2) {
-    imageString.value = "src/assets/image-product-3.jpg";
+    imageString.value = "src/assets/image-product-2.jpg";
   } else if (imageGuide.value === 3) {
+    imageString.value = "src/assets/image-product-3.jpg";
+  } else if (imageGuide.value === 4) {
     imageString.value = "src/assets/image-product-4.jpg";
   }
 });
