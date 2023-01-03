@@ -105,7 +105,7 @@ function editCount(increment) {
   display: flex;
   justify-content: space-between;
   border-radius: 0.5rem;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 .button_interact button {
   color: var(--orange);
@@ -123,7 +123,7 @@ function editCount(increment) {
   transition: 0.3s;
 }
 .button_interact button:hover use {
-  fill: #ffac6a;
+  fill: var(--hover-orange);
 }
 .button_interact p {
   color: var(--very-dark-blue);
@@ -151,7 +151,7 @@ function editCount(increment) {
   box-shadow: 2px 8px 20px rgba(255, 125, 26, 0.2);
 }
 .button_add_cart button:hover {
-  background-color: #ffac6a;
+  background-color: var(--hover-orange);
 }
 @media (min-width: 1024px) {
   .product_buttons {

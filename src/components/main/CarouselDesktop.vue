@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { STYLE_SELECT } from "../../helpers/variables";
+import { switchScroll } from "../../helpers/void";
 import ModalDesktop from "../modal/ModalDesktop.vue";
 
 const primaryImage = ref("/src/assets/image_product_1.jpg");
@@ -37,6 +38,7 @@ watch(imageSelect, (now, back) => {
 });
 function switchModal() {
   showModal.value = !showModal.value;
+  switchScroll(showModal.value);
 }
 function voidStyles() {
   firstButtonStyles.value = {};

@@ -103,6 +103,10 @@ function deleteProduct(e) {
   border-radius: 0.5rem;
   width: 100%;
   font-weight: 700;
+  transition: 0.3s;
+}
+.products-checkout:hover {
+  background-color: var(--hover-orange);
 }
 .product {
   display: flex;

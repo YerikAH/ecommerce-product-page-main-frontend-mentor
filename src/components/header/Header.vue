@@ -2,12 +2,14 @@
 import { ref } from "vue";
 import MenuMobile from "./MenuMobile.vue";
 import ModalProductAdd from "../modal/ModalProductAdd.vue";
+import { switchScroll } from "../../helpers/void";
 const menuMobileSwitch = ref(false);
 const modalProduct = ref(false);
 const valueProps = defineProps(["productCart"]);
 const emit = defineEmits(["eventHeader"]);
 function switchMenuMobile() {
   menuMobileSwitch.value = !menuMobileSwitch.value;
+  switchScroll(menuMobileSwitch.value);
 }
 function switchProduct(e) {
   let eventClick;
@@ -18,6 +20,9 @@ function switchProduct(e) {
   }
   if (eventClick.className.baseVal === "openModalSwitch") {
     modalProduct.value = !modalProduct.value;
+  }
+  if (screen.width < 1024) {
+    switchScroll(modalProduct.value);
   }
 }
 function deleteEmit(id) {
